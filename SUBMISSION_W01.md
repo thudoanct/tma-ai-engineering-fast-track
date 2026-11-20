@@ -7,17 +7,32 @@
 **What I built (summary + key modules):** `run_classifier.py` (bản dynamic theo slide 23: prompt tách riêng thành `prompts/v1.md`, `prompts/v2.md`, `prompts/v3.md` — chạy từng phiên bản bằng `python run_classifier.py v2`, kết quả riêng từng bản ở `reports/results_v1.csv`, `reports/results_v2.csv`, `reports/results_v3.csv`). Script đọc 20 case từ `data/evaluation/issue_classification_gold.json` (chỉ dùng trường `text`, không gửi đáp án), gọi model, kiểm tra JSON bằng Pydantic, ghi CSV đúng định dạng của `scripts/evaluate_issue_classifier.py`.
 
 **How to run:**
+
+Chạy trong thư mục gốc của kit (Windows PowerShell) — chạy lại bản nộp V2 rồi chấm điểm:
+
 ```powershell
 .venv\Scripts\Activate.ps1
+# Bật môi trường ảo của dự án; thành công khi đầu dòng hiện (.venv).
+
 python run_classifier.py v2
+# Chạy prompt ở prompts/v2.md trên đúng 20 case của kit (chỉ gửi trường text,
+# không gửi đáp án), kiểm tra JSON bằng Pydantic, ghi reports\results_v2.csv.
+# Bỏ chữ v2 ở cuối thì script chạy cả 3 phiên bản V1/V2/V3.
+
 python scripts\evaluate_issue_classifier.py reports\results_v2.csv
+# Chấm bằng script chính thức của kit. Kết quả kỳ vọng:
+#   Category accuracy: 20/20 = 100.0%
+#   Priority accuracy: 19/20 = 95.0%
+#   Critical P1 misses: []
 ```
 
-Chấm lại file nộp mà không tốn thêm API (file nộp là bản sao kết quả V2 theo quy ước của kit):
+Lưu ý khi chạy lại: lệnh `run_classifier.py` có gọi API OpenAI nên cần file `.env` chứa `OPENAI_API_KEY` và `OPENAI_MODEL` hợp lệ (key không nằm trong repo). Nếu chỉ cần kiểm chứng kết quả đã nộp mà không gọi lại API, chấm trực tiếp file kết quả đã commit — ra đúng 3 dòng kỳ vọng ở trên, không tốn thêm lượt gọi API nào:
+
 ```powershell
-copy reports\results_v2.csv evidence\w1_predictions.csv
 python scripts\evaluate_issue_classifier.py evidence\w1_predictions.csv
 ```
+
+(`evidence\w1_predictions.csv` là bản sao của `reports\results_v2.csv` theo quy ước đặt file nộp của kit; chấm `reports\results_v1.csv` và `reports\results_v3.csv` để xem điểm hai phiên bản còn lại.)
 
 **Results:**
 - Phân loại 20 issue (model `gpt-4o-mini`, chấm bằng script của kit, chạy trên máy của mình):
