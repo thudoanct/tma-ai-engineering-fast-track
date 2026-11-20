@@ -39,35 +39,34 @@ python scripts\evaluate_issue_classifier.py evidence\w1_predictions.csv
 
 | Phiên bản | Category | Priority | Critical P1 misses | Ca sai |
 |---|---|---|---|---|
-| V1 tiếng Việt | 20/20 | 15/20 | [CASE-16] | 05, 06, 08, 12, 16 |
-| V1 tiếng Anh | 20/20 | 15/20 | [] | 05, 06, 08, 12, 13 |
+| V1 | 20/20 | 15/20 | [] | 05, 06, 08, 12, 13 |
 | **V2 (bản nộp)** | **20/20** | **19/20** | **[]** | chỉ CASE-12 |
 | V3 | 20/20 | 18/20 | [] | CASE-12, CASE-18 |
 
-Bảng chi tiết từng case so với gold (chỉ so priority — category đúng 20/20 ở cả 4 lần chạy; ô ghi giá trị cụ thể là chấm khác gold, ô ✓ là chấm đúng gold):
+Bảng chi tiết từng case so với gold (chỉ so priority — category đúng 20/20 ở cả 3 phiên bản; ô ghi giá trị cụ thể là chấm khác gold, ô ✓ là chấm đúng gold):
 
-| Case | Gold | V1 Việt | V1 Anh | V2 | V3 |
-|---|---|---|---|---|---|
-| CASE-01 | Bug / P1 | ✓ | ✓ | ✓ | ✓ |
-| CASE-02 | Bug / P1 | ✓ | ✓ | ✓ | ✓ |
-| CASE-03 | Bug / P1 | ✓ | ✓ | ✓ | ✓ |
-| CASE-04 | Bug / P1 | ✓ | ✓ | ✓ | ✓ |
-| CASE-05 | Feature / P3 | P2 ✗ | P2 ✗ | ✓ | ✓ |
-| CASE-06 | Feature / P3 | P2 ✗ | P2 ✗ | ✓ | ✓ |
-| CASE-07 | Feature / P2 | ✓ | ✓ | ✓ | ✓ |
-| CASE-08 | Feature / P3 | P2 ✗ | P2 ✗ | ✓ | ✓ |
-| CASE-09 | Question / P3 | ✓ | ✓ | ✓ | ✓ |
-| CASE-10 | Question / P3 | ✓ | ✓ | ✓ | ✓ |
-| CASE-11 | Question / P3 | ✓ | ✓ | ✓ | ✓ |
-| CASE-12 | Question / P2 | P3 ✗ | P3 ✗ | P3 ✗ | P3 ✗ |
-| CASE-13 | Risk / P2 | ✓ | P1 ✗ | ✓ | ✓ |
-| CASE-14 | Risk / P1 | ✓ | ✓ | ✓ | ✓ |
-| CASE-15 | Risk / P2 | ✓ | ✓ | ✓ | ✓ |
-| CASE-16 | Risk / P1 | P2 ✗ | ✓ | ✓ | ✓ |
-| CASE-17 | Bug / P2 | ✓ | ✓ | ✓ | ✓ |
-| CASE-18 | Feature / P2 | ✓ | ✓ | ✓ | P3 ✗ |
-| CASE-19 | Question / P3 | ✓ | ✓ | ✓ | ✓ |
-| CASE-20 | Risk / P2 | ✓ | ✓ | ✓ | ✓ |
+| Case | Gold | V1 | V2 | V3 |
+|---|---|---|---|---|
+| CASE-01 | Bug / P1 | ✓ | ✓ | ✓ |
+| CASE-02 | Bug / P1 | ✓ | ✓ | ✓ |
+| CASE-03 | Bug / P1 | ✓ | ✓ | ✓ |
+| CASE-04 | Bug / P1 | ✓ | ✓ | ✓ |
+| CASE-05 | Feature / P3 | P2 ✗ | ✓ | ✓ |
+| CASE-06 | Feature / P3 | P2 ✗ | ✓ | ✓ |
+| CASE-07 | Feature / P2 | ✓ | ✓ | ✓ |
+| CASE-08 | Feature / P3 | P2 ✗ | ✓ | ✓ |
+| CASE-09 | Question / P3 | ✓ | ✓ | ✓ |
+| CASE-10 | Question / P3 | ✓ | ✓ | ✓ |
+| CASE-11 | Question / P3 | ✓ | ✓ | ✓ |
+| CASE-12 | Question / P2 | P3 ✗ | P3 ✗ | P3 ✗ |
+| CASE-13 | Risk / P2 | P1 ✗ | ✓ | ✓ |
+| CASE-14 | Risk / P1 | ✓ | ✓ | ✓ |
+| CASE-15 | Risk / P2 | ✓ | ✓ | ✓ |
+| CASE-16 | Risk / P1 | ✓ | ✓ | ✓ |
+| CASE-17 | Bug / P2 | ✓ | ✓ | ✓ |
+| CASE-18 | Feature / P2 | ✓ | ✓ | P3 ✗ |
+| CASE-19 | Question / P3 | ✓ | ✓ | ✓ |
+| CASE-20 | Risk / P2 | ✓ | ✓ | ✓ |
 
 - Mốc Tuần 1 (category ≥ 17/20, JSON đúng schema 100%, đúng cả 6 ca P1: CASE-01, 02, 03, 04, 14, 16): **V2 đạt cả 3 mốc**.
 - Smoke test (chạy trên máy của mình): **PASS** - fixture files and counts are consistent (documents 15, jira_issues 30, issue_cases 20, retrieval_cases 20, rag_cases 30, agent_cases 20, security_cases 10).
