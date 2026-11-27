@@ -6,6 +6,10 @@ Run (from the w2-starter folder, venv active):
 No API key and no network are needed here: the LLM layer is mocked,
 so these tests prove the endpoint's own behaviour — validation first,
 then the error mapping from the study guide (422 / 504 / 503 / 502).
+
+Contract updated 2026-11-27 to the mentor's shared evaluation
+dataset: request field is ``meeting_text``; the response list is
+``actions`` with items ``{"owner", "action", "due_date"}``.
 """
 
 from __future__ import annotations
@@ -32,8 +36,8 @@ GOOD_NOTES = (
 GOOD_RESPONSE = {
     "summary": "Team moved UAT to 30 Nov 2026; Lan updates the test plan.",
     "decisions": ["Move UAT to 30 Nov 2026"],
-    "action_items": [
-        {"task": "Update the test plan", "owner": "Lan", "due_date": "2026-11-27"}
+    "actions": [
+        {"owner": "Lan", "action": "Update the test plan", "due_date": "2026-11-27"}
     ],
 }
 
@@ -42,14 +46,14 @@ def test_happy_path_returns_structured_output(monkeypatch):
     monkeypatch.setattr(
         llm, "analyze_meeting", lambda notes: MeetingAnalysis(**GOOD_RESPONSE)
     )
-    resp = client.post("/analyze-meeting", json={"meeting_notes": GOOD_NOTES})
+    resp = client.post("/analyze-meeting", json={"meeting_text": GOOD_NOTES})
     assert resp.status_code == 200
     assert resp.json()["decisions"] == ["Move UAT to 30 Nov 2026"]
-    assert resp.json()["action_items"][0]["owner"] == "Lan"
+    assert resp.json()["actions"][0]["owner"] == "Lan"
 
 
 def test_invalid_payload_missing_notes():
-    # 1/5 — payload khong hop le: thieu meeting_notes -> 422, khong goi LLM
+    # 1/5 — payload khong hop le: thieu meeting_text -> 422, khong goi LLM
     resp = client.post("/analyze-meeting", json={})
     assert resp.status_code == 422
 
@@ -58,7 +62,7 @@ def test_empty_notes_rejected_before_llm_call(monkeypatch):
     # 1/5 (bien the) — bien ban rong -> 422 ngay, khong ton luot goi LLM
     called = []
     monkeypatch.setattr(llm, "analyze_meeting", lambda notes: called.append(notes))
-    resp = client.post("/analyze-meeting", json={"meeting_notes": "   "})
+    resp = client.post("/analyze-meeting", json={"meeting_text": "   "})
     assert resp.status_code == 422
     assert called == []
 
@@ -68,7 +72,7 @@ def test_timeout_maps_to_504(monkeypatch):
     monkeypatch.setattr(
         llm, "analyze_meeting", lambda notes: (_ for _ in ()).throw(llm.UpstreamTimeout("timed out"))
     )
-    resp = client.post("/analyze-meeting", json={"meeting_notes": GOOD_NOTES})
+    resp = client.post("/analyze-meeting", json={"meeting_text": GOOD_NOTES})
     assert resp.status_code == 504
     assert resp.json() == {"error": "upstream_timeout"}
 
@@ -78,7 +82,7 @@ def test_persistent_429_maps_to_503(monkeypatch):
     monkeypatch.setattr(
         llm, "analyze_meeting", lambda notes: (_ for _ in ()).throw(llm.UpstreamRateLimited("429"))
     )
-    resp = client.post("/analyze-meeting", json={"meeting_notes": GOOD_NOTES})
+    resp = client.post("/analyze-meeting", json={"meeting_text": GOOD_NOTES})
     assert resp.status_code == 503
     assert resp.json() == {"error": "upstream_rate_limited"}
 
@@ -88,7 +92,7 @@ def test_upstream_500_maps_to_502(monkeypatch):
     monkeypatch.setattr(
         llm, "analyze_meeting", lambda notes: (_ for _ in ()).throw(llm.UpstreamError("500"))
     )
-    resp = client.post("/analyze-meeting", json={"meeting_notes": GOOD_NOTES})
+    resp = client.post("/analyze-meeting", json={"meeting_text": GOOD_NOTES})
     assert resp.status_code == 502
     assert resp.json() == {"error": "upstream_error"}
 
@@ -100,7 +104,7 @@ def test_invalid_model_output_maps_to_502(monkeypatch):
         "analyze_meeting",
         lambda notes: (_ for _ in ()).throw(llm.InvalidUpstreamResponse("bad json")),
     )
-    resp = client.post("/analyze-meeting", json={"meeting_notes": GOOD_NOTES})
+    resp = client.post("/analyze-meeting", json={"meeting_text": GOOD_NOTES})
     assert resp.status_code == 502
     assert resp.json() == {"error": "invalid_upstream_response"}
 

@@ -57,4 +57,4 @@ def health() -> dict:
 
 @app.post("/analyze-meeting", response_model=schemas.MeetingAnalysis)
 def analyze_meeting(payload: schemas.MeetingRequest) -> schemas.MeetingAnalysis:
-    return llm.analyze_meeting(payload.meeting_notes)
+    return llm.analyze_meeting(payload.meeting_text)

@@ -54,7 +54,11 @@ class InvalidUpstreamResponse(Exception):
 
 
 def _load_prompt() -> str:
-    prompt_path = Path(__file__).resolve().parent.parent.parent / "prompts" / "w2_v1.md"
+    # w2_v2.md: prompt aligned on 2026-11-27 to the mentor's shared
+    # evaluation contract (meeting_text / actions / date resolution).
+    # The earlier w2_v1.md belonged to the superseded practice set
+    # and is archived outside this project folder.
+    prompt_path = Path(__file__).resolve().parent.parent.parent / "prompts" / "w2_v2.md"
     return prompt_path.read_text(encoding="utf-8")
 
 
