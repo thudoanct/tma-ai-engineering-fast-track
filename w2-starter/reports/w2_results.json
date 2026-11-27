@@ -1,0 +1,389 @@
+[
+  {
+    "id": "W2P-01",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to move UAT to 30 Nov 2026 because staging is not ready. Lan will update the test plan by 27 Nov 2026.",
+      "decisions": [
+        "Move UAT to 30 Nov 2026 because staging is not ready."
+      ],
+      "action_items": [
+        {
+          "task": "Update the test plan",
+          "owner": "Lan",
+          "due_date": "2026-11-27"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-02",
+    "status": 200,
+    "predicted": {
+      "summary": "The team agreed to freeze the scope for Sprint 12 and to extend the daily standup to 30 minutes.",
+      "decisions": [
+        "Freeze the scope for Sprint 12.",
+        "Extend the daily standup to 30 minutes."
+      ],
+      "action_items": [
+        {
+          "task": "Send the scope-freeze notice",
+          "owner": "Minh",
+          "due_date": "2026-11-24"
+        },
+        {
+          "task": "Update the sprint board",
+          "owner": "Hoa",
+          "due_date": "2026-11-25"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-03",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to postpone the go-live to December. An will draft the rollback plan by next Friday.",
+      "decisions": [
+        "Postpone the go-live to December."
+      ],
+      "action_items": [
+        {
+          "task": "Draft the rollback plan",
+          "owner": "An",
+          "due_date": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-04",
+    "status": 200,
+    "predicted": {
+      "summary": "The team discussed the flaky login test that needs to be fixed and the rotation of the on-call schedule.",
+      "decisions": [],
+      "action_items": [
+        {
+          "task": "fix the flaky login test",
+          "owner": null,
+          "due_date": null
+        },
+        {
+          "task": "rotate the on-call schedule",
+          "owner": "Linh",
+          "due_date": "2026-12-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-05",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to keep the current incident report template.",
+      "decisions": [
+        "Keep the current incident report template."
+      ],
+      "action_items": []
+    }
+  },
+  {
+    "id": "W2P-06",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to adopt a new code review checklist.",
+      "decisions": [
+        "Adopt a new code review checklist."
+      ],
+      "action_items": [
+        {
+          "task": "Write the checklist",
+          "owner": "Bao",
+          "due_date": "2026-11-26"
+        },
+        {
+          "task": "Add the checklist to onboarding",
+          "owner": "Chi",
+          "due_date": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-07",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to release version 2.4 on Dec 4. Dung will prepare the release notes by Dec 3 and Nam will run the smoke tests on Dec 4.",
+      "decisions": [
+        "Release version 2.4 on Dec 4."
+      ],
+      "action_items": [
+        {
+          "task": "Prepare the release notes",
+          "owner": "Dung",
+          "due_date": "2023-12-03"
+        },
+        {
+          "task": "Run the smoke tests",
+          "owner": "Nam",
+          "due_date": "2023-12-04"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-08",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided that UAT sign-off needs approval from the QA lead. The QA team will send the sign-off checklist by 27 Nov 2026, and Linh will book the UAT session this week.",
+      "decisions": [
+        "UAT sign-off needs approval from the QA lead."
+      ],
+      "action_items": [
+        {
+          "task": "send the sign-off checklist",
+          "owner": "QA team",
+          "due_date": "2026-11-27"
+        },
+        {
+          "task": "book the UAT session",
+          "owner": "Linh",
+          "due_date": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-09",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to switch the vendor API to v2 before the December cutover. Khanh will test the v2 sandbox by 2 Dec 2026.",
+      "decisions": [
+        "Switch the vendor API to v2 before the December cutover."
+      ],
+      "action_items": [
+        {
+          "task": "Ask the vendor to confirm the cutover date",
+          "owner": null,
+          "due_date": null
+        },
+        {
+          "task": "Test the v2 sandbox",
+          "owner": "Khanh",
+          "due_date": "2026-12-02"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-10",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to renew the security certificate before go-live.",
+      "decisions": [
+        "Renew the security certificate before go-live."
+      ],
+      "action_items": [
+        {
+          "task": "Renew the security certificate",
+          "owner": "Phuong",
+          "due_date": "2026-11-30"
+        },
+        {
+          "task": "Verify the new expiry date",
+          "owner": "Tuan",
+          "due_date": "2026-12-01"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-11",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to move the demo for Project BETA to Thursday 26 Nov 2026. Mai will prepare the demo script by 25 Nov 2026.",
+      "decisions": [
+        "Move the demo to Thursday 26 Nov 2026."
+      ],
+      "action_items": [
+        {
+          "task": "Prepare the demo script",
+          "owner": "Mai",
+          "due_date": "2026-11-25"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-12",
+    "status": 200,
+    "predicted": {
+      "summary": "The team discussed how to prioritise the backlog for the next sprint and will revisit the topic later.",
+      "decisions": [],
+      "action_items": []
+    }
+  },
+  {
+    "id": "W2P-13",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to postpone the deploy to 8 Dec 2026.",
+      "decisions": [
+        "Postpone the deploy to 8 Dec 2026."
+      ],
+      "action_items": [
+        {
+          "task": "Notify the customer",
+          "owner": "Huy",
+          "due_date": "2026-11-27"
+        },
+        {
+          "task": "Update the status page after the deploy",
+          "owner": "Linh",
+          "due_date": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-14",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to hire one QA engineer and to start onboarding on 7 Dec 2026. The HR team will post the job description.",
+      "decisions": [
+        "The team decided to hire one QA engineer.",
+        "The onboarding will start on 7 Dec 2026.",
+        "The HR team will post the job description."
+      ],
+      "action_items": [
+        {
+          "task": "Post the job description",
+          "owner": "HR team",
+          "due_date": null
+        },
+        {
+          "task": "Mentor the new QA engineer",
+          "owner": "Nam",
+          "due_date": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-15",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to migrate the database on 2026-12-12.",
+      "decisions": [
+        "Migrate the database on 2026-12-12."
+      ],
+      "action_items": [
+        {
+          "task": "Take a backup",
+          "owner": "Son",
+          "due_date": "2026-12-11"
+        },
+        {
+          "task": "Validate the migration",
+          "owner": "Thao",
+          "due_date": "2026-12-12"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-16",
+    "status": 200,
+    "predicted": {
+      "summary": "The team discussed the flaky staging environment and the late test data, and decided to keep the Friday demo as planned.",
+      "decisions": [
+        "Keep the Friday demo as planned"
+      ],
+      "action_items": []
+    }
+  },
+  {
+    "id": "W2P-17",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to extend support hours and to publish an FAQ page. Yen will draft the FAQ and Duc will review it.",
+      "decisions": [
+        "Extend support hours",
+        "Publish an FAQ page"
+      ],
+      "action_items": [
+        {
+          "task": "Draft the FAQ",
+          "owner": "Yen",
+          "due_date": "2026-11-28"
+        },
+        {
+          "task": "Update the support rota",
+          "owner": null,
+          "due_date": "2026-11-30"
+        },
+        {
+          "task": "Review the FAQ",
+          "owner": "Duc",
+          "due_date": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-18",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to change the report frequency from weekly to daily. Linh will send the daily report starting Monday 30 Nov 2026.",
+      "decisions": [
+        "Change the report frequency from weekly to daily."
+      ],
+      "action_items": [
+        {
+          "task": "Send the daily report",
+          "owner": "Linh",
+          "due_date": "2026-11-30"
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-19",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to add a fallback login if the external OAuth service is down.",
+      "decisions": [
+        "Add a fallback login if the external OAuth service is down."
+      ],
+      "action_items": [
+        {
+          "task": "Build the fallback login",
+          "owner": "Vy",
+          "due_date": "2026-12-05"
+        },
+        {
+          "task": "Test the fallback login",
+          "owner": "Khoa",
+          "due_date": null
+        }
+      ]
+    }
+  },
+  {
+    "id": "W2P-20",
+    "status": 200,
+    "predicted": {
+      "summary": "The team decided to freeze the API contract. Hanh will update the API docs.",
+      "decisions": [
+        "Freeze the API contract."
+      ],
+      "action_items": [
+        {
+          "task": "Update the API docs",
+          "owner": "Hanh",
+          "due_date": "2026-11-25"
+        }
+      ]
+    }
+  }
+]
