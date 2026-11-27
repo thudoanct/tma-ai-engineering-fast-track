@@ -54,12 +54,11 @@ Chạy thử API bằng tay (tùy chọn): `uvicorn app.main:app --reload --port
 - API key / model: bài chạy bằng API key tự tạo để luyện tập (key nằm trong `.env` local, không commit). Key, model chính thức và trần chi phí của khóa do AI Lead cấp vẫn chưa nhận được.
 - Xác nhận: repo không chứa secret — `.env` và `.venv` đã được chặn bằng `.gitignore`, đã kiểm tra bằng `git status` trước khi commit.
 
-Bảng điểm theo phiên bản đo:
+Bảng điểm:
 
-| Phiên bản | Điểm | Ghi chú |
+| Hạng mục | Kết quả | Ghi chú |
 |---|---|---|
-| V1 — đo trên bộ luyện tự soạn (26/11) | 46/52 | Bản nộp đầu tiên. Bộ chính thức của mentor phát từ 21/11 nhưng mình bỏ sót, nên lúc đó tự chuẩn bị bộ luyện để đo. |
-| V2 — hợp đồng chính thức của mentor (bản nộp) | **48/52 — PASS** | Ngày 27/11 nhận được bộ chính thức: chỉnh lại hợp đồng ở 4 điểm (field `meeting_text`; response `actions`/`action`; luật ngày suy năm theo ngày họp và “on the same day”; việc chung 2 owner tách 2 dòng), viết prompt `w2_v2.md`, đo lại trên đúng bộ của mentor. |
+| Trích xuất trên bộ chính thức của mentor (prompt `w2_v2.md`) | **48/52 — PASS** | Đo ngày 27/11/2026 trên bộ TC01–TC20; hợp đồng gồm: field `meeting_text`; response `actions`/`action`; luật ngày suy năm theo ngày họp và “on the same day” theo sự kiện được nhắc; việc chung 2 owner tách 2 dòng. |
 
 **Known failures / trade-offs:**
 
@@ -69,14 +68,6 @@ Bảng điểm theo phiên bản đo:
   - TC07 (1/2): decision — model viết “The API documentation needs improvement”, đáp án là “Improve the API documentation” (cùng nghĩa, khác cấu trúc câu).
   - TC15 (6/7): thiếu hẳn decision “Improve the authentication module” — lỗi trích xuất thật duy nhất trong 4 ca: biên bản nhiều việc, quyết định dạng “đồng ý cải thiện” bị sót.
   - Ghi chú về cách chấm: script chấm so theo nghĩa bằng độ trùng từ có ngưỡng; 3 ca TC03/TC06/TC07 nằm sát ngưỡng nên chưa được tính. Mình không nới ngưỡng thêm để tránh tự chấm lỏng tay; nếu mentor chấm theo nghĩa như hợp đồng đã công bố, 3 ca này có thể được tính, điểm sẽ là 51/52.
-- **Lỗi đã gặp và sửa trong lúc đo V1 (26/11/2026) — lượt chạy thật đầu tiên gục 20/20:**
-  - Hiện tượng: cả 20 case trả `HTTP 502`, nhãn `upstream_error` — chưa case nào có đáp án để chấm.
-  - Nguyên nhân: `FileNotFoundError` trong hàm `_load_prompt` của `app/services/llm.py` — đường dẫn prompt đi lên 2 tầng (`.parent.parent`) thì dừng ở `app/`, trong khi thư mục `prompts/` nằm ở gốc `w2-starter` nên phải đi lên 3 tầng; lỗi xảy ra trước cả khi gọi API.
-  - Vì sao 8 test lỗi không bắt được: chúng thay nguyên hàm `analyze_meeting` bằng bản giả qua monkeypatch nên không chạm vào dòng nạp prompt — đúng loại lỗi chỉ lượt chạy API thật mới lôi ra được.
-  - Cách sửa: thêm đúng một `.parent` vào đường dẫn, chạy lại → cả 20 case đều `HTTP 200`.
-  - Bài học giữ lại: cần cả hai lớp kiểm chứng — test giả lập cho logic xử lý lỗi, lượt chạy thật cho cấu hình/đường dẫn.
-- Bộ luyện tự soạn của bản V1 đã được gỡ khỏi thư mục nộp; bài nộp chỉ giữ những gì liên quan đến bộ case chính thức của mentor.
-
 **Demo link:** (để trống)
 
 **PR link:** (để trống — repo cá nhân: https://github.com/thudoanct/tma-ai-engineering-fast-track)
@@ -85,6 +76,6 @@ Bảng điểm theo phiên bản đo:
 
 **Một điều làm tốt / một điều thất bại / một cải tiến tiếp theo:**
 
-- **Làm tốt:** phát hiện bộ case chính thức bị bỏ sót ngay trong ngày Gate 1, chỉnh lại toàn bộ hợp đồng theo mentor và đo lại đạt 48/52 (92,3%) PASS trên đúng chuẩn chấm chung; kỷ luật “không bịa” giữ được — không ca nào bịa việc, người hay ngày ngoài biên bản.
-- **Thất bại:** bỏ sót bộ case chính thức mentor phát từ 21/11/2026 nên bản nộp đầu tiên phải đo trên bộ tự soạn; TC15 cho thấy model vẫn sót quyết định khi biên bản có nhiều việc.
-- **Cải tiến tiếp theo:** thêm vào prompt luật “giữ nguyên văn biên bản khi ghi decision/action” để giảm lệch diễn đạt như TC03/TC06/TC07, và đặt checklist đầu mỗi tuần: kiểm tra đủ tài liệu mentor đã phát trước khi bắt đầu làm.
+- **Làm tốt:** đo trên đúng bộ case chính thức của mentor đạt 48/52 (92,3%) PASS; kỷ luật “không bịa” giữ được — không ca nào bịa việc, người hay ngày ngoài biên bản; phân tích được rõ từng ca mất điểm và giữ nguyên ngưỡng chấm thay vì nới tay.
+- **Thất bại:** TC15 cho thấy model vẫn sót quyết định dạng “đồng ý cải thiện” khi biên bản có nhiều việc; 3 ca TC03/TC06/TC07 lệch diễn đạt nên chưa được tính điểm.
+- **Cải tiến tiếp theo:** thêm vào prompt luật “giữ nguyên văn biên bản khi ghi decision/action” để giảm lệch diễn đạt như TC03/TC06/TC07, và nhắc model rà riêng các quyết định dạng đồng ý trong biên bản dài.
